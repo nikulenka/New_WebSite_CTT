@@ -1,48 +1,74 @@
-# Design System for CTT EDI (EPAM Style)
+# Design System for CTT EDI: Liquid Glass Edition (2026)
 
-## 1. Core Visual Language
-A premium, tech-forward, and high-impact design inspired by `epam.com`. Focus on dark themes, vibrant accents, and minimalist structural integrity.
+## 1. Core Visual Language: "Refractive Fluidity"
 
-## 2. Color Palette
-- **Primary Background:** Deep Black `#000000` or Slate-950 `#020617`.
-- **Secondary Background:** Dark Grey `#0c0c0c` for content blocks.
-- **Accent 1 (Primary):** Electric Green `#0FA85F` (Brand color).
-- **Accent 2 (Highlight):** Vibrant Gradient (Cyan to Lime or Magenta to Orange) for high-impact visual areas.
-- **Text:** Crisp White `#FFFFFF` for headings, Slate-300 for body text.
-- **Dividers:** 1px borders in Slate-800 or transparent overlays.
+Мы создаем эффект многослойности. Контент не просто лежит на фоне, он «плавает» внутри стеклянных панелей с разным индексом преломления.
 
-## 3. Typography
-- **Headers:** DM Sans Bold (or modern equivalent like Inter). Large weights, tight tracking for headings.
-- **Body:** Inter Regular. High legibility, generous line height (1.6).
-- **UI Elements:** All-caps buttons with increased letter spacing for a sophisticated look.
+* **Physicality:** Использование `backdrop-filter: blur()` и `saturate()` для создания эффекта матового стекла.
+* **Motion:** Все переходы — через `bezier-curves`. Элементы не появляются, а «проявляются» или «вплывают».
+* **Depth:** Использование Z-оси. При скролле слои движутся с разной скоростью (мягкий параллакс).
 
-## 4. Layout & Spacing
-- **Grids:** Spacious 12-column grid. Generous "breathing room" (section padding 120px+).
-- **Cards:** Glassmorphism or flat dark cards with thin 1px borders. No heavy shadows.
-- **Visuals:** High-quality abstract tech imagery, blurred neon gradients, 3D elements representing connectivity.
+## 2. Color Palette (Deep Ocean & Electric Glow)
 
-## 5. Components
-- **Header:** Transparent, becoming sticky with a backdrop blur.
-- **Buttons:** 
-  - Primary: Solid Accent 1 with hover glow.
-  - Secondary: Ghost buttons (border only) with hover fill.
-- **Navigation:** Underline micro-animations on hover.
+* **Base:** `Deep Black #050505` — бесконечная глубина.
+* **Glass Surface:** `rgba(255, 255, 255, 0.03)` — едва заметная текстура стекла.
+*  **Accent 1 (The Energy):** `Electric Green #0FA85F` — используется для активных элементов и «свечения» сквозь стекло.
 
-## 6. Design System Notes for Stitch Generation
-[STITCH_CONFIG]
+
+* **Accent 2 (The Fluid):** `Mesh Gradients` (Dark Emerald → Deep Indigo) — анимированные пятна на фоне, создающие движение.
+* **Text:** `Ice White #F8FAFC` (Headings), `Slate-400` (Body) — для идеального контраста.
+
+## 3. Typography: Architectural & Crisp
+
+* **Headings:** `Satoshi Variable` или `Geist Sans`. Очень крупные кегли (96px+), отрицательный `letter-spacing` (-0.04em) для эффекта мощи.
+* **Body:** `Inter Tight`. Вес 400, межстрочный интервал `1.6` для максимального «воздуха».
+* **Captions:** `JetBrains Mono` для технических параметров — подчеркивает точность системы.
+
+## 4. Layout: The Bento Grid Evolution
+
+* **Structure:** Использование адаптивной сетки Bento (разные по размеру скругленные блоки).
+* **Margins:** Экстремальные отступы (Section Padding: 160px). Контент должен «дышать».
+* **Edges:** Скругления углов — `24px` или `32px`, чтобы смягчить строгую геометрию.
+
+## 5. Liquid Components
+
+* **Glass Cards:** Тонкая обводка `1px` (полупрозрачный градиент), внутреннее свечение (inner glow) и `blur` фона.
+* **The "Flow" Button:**
+* *Default:* Прозрачное стекло с зеленой обводкой.
+* *Hover:* Заполнение цветом `Electric Green` с эффектом «растекания» из центра и мягким свечением (glow).
+* **Interactive Inputs:** При фокусе стекло под курсором «подсвечивается», как будто за ним перемещается фонарик.
+
+## 6. Motion Strategy (Smooth Transitions)
+
+* **Page Transitions:** Бесшовный переход (Smart Animate), когда элементы одной страницы плавно трансформируются в элементы другой.
+* **Micro-interactions:** При наведении на карточку — мягкое увеличение и изменение угла преломления (tilt effect).
+
+---
+
+## [STITCH_CONFIG]
+
+```json
 {
-  "theme": "dark",
-  "style": "modern_tech",
+  "theme": "ultra_dark_liquid",
+  "style": "liquid_glassmorphism",
   "primaryColor": "#0FA85F",
-  "secondaryColor": "#0F172A",
+  "secondaryColor": "#050505",
+  "effects": {
+    "blurStrength": "20px",
+    "glassOpacity": 0.05,
+    "animationCurve": "cubic-bezier(0.22, 1, 0.36, 1)"
+  },
   "typography": {
-    "headings": "DM Sans",
-    "body": "Inter"
+    "headings": "Satoshi Bold",
+    "body": "Inter Tight"
   },
   "visuals": {
-    "backgroundType": "gradient_mesh",
-    "borderRadius": "none",
-    "borders": "thin"
+    "backgroundType": "animated_mesh_gradient",
+    "borderRadius": "24px",
+    "borders": "1px_glass_gradient"
   }
 }
+
+```
+
 [/STITCH_CONFIG]

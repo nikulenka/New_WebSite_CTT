@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Partners = () => {
     const partners = [
@@ -8,23 +9,37 @@ const Partners = () => {
     ];
 
     return (
-        <section id="клиенты" className="py-24 bg-black border-y border-white/5">
+        <section id="клиенты" className="py-24 relative overflow-hidden">
             <div className="container mx-auto px-6">
-                <div className="text-center mb-12">
-                    <h2 className="text-[10px] uppercase tracking-[0.5em] font-bold text-slate-500">
+                <div className="text-center mb-16">
+                    <motion.h2
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        className="text-[10px] uppercase tracking-[0.5em] font-black text-slate-500"
+                    >
                         Нам доверяют лидеры рынка
-                    </h2>
+                    </motion.h2>
                 </div>
 
-                {/* Infinite Ticker Concept */}
-                <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
-                    {partners.map((partner, index) => (
-                        <div key={index} className="text-lg md:text-2xl font-black text-white px-4 border-r border-white/10 last:border-none">
-                            {partner}
-                        </div>
-                    ))}
+                <div className="relative group grayscale hover:grayscale-0 transition-all duration-700">
+                    <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-10">
+                        {partners.map((partner, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 0.4 }}
+                                whileHover={{ opacity: 1, scale: 1.1 }}
+                                className="text-xl md:text-3xl font-black text-white hover:text-brand-green transition-all duration-500 cursor-default"
+                            >
+                                {partner}
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </div>
+
+            {/* Background subtle light streak */}
+            <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none" />
         </section>
     );
 };

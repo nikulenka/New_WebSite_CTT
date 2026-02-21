@@ -1,66 +1,98 @@
 import React from 'react';
-import { ShieldCheck, ArrowRight, Play } from 'lucide-react';
+import { ArrowRight, Play, ShieldCheck, Globe, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
     return (
-        <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden neon-mesh">
-            {/* Background Decorative Elements */}
-            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-green/10 rounded-full blur-[120px] pointer-events-none" />
+        <section className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden">
+            {/* Animated Mesh Gradient Background is handled in index.css */}
+            <div className="animated-mesh" />
 
-            <div className="container mx-auto px-4 relative z-10">
-                <div className="max-w-5xl mx-auto text-center">
+            <div className="container mx-auto px-6 relative z-10">
+                <div className="flex flex-col lg:flex-row items-center gap-16 md:gap-24">
+                    <div className="lg:w-3/5">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
+                            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                        >
+                            <div className="flex gap-3 mb-10">
+                                {[
+                                    { label: 'Резидент ПВТ', icon: <ShieldCheck className="w-3 h-3" /> },
+                                    { label: 'Партнер GS1', icon: <Globe className="w-3 h-3" /> },
+                                    { label: 'TOP-3 EDI СНГ', icon: <Star className="w-3 h-3" /> }
+                                ].map((item, i) => (
+                                    <motion.span
+                                        key={item.label}
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.5 + (i * 0.1), duration: 0.8 }}
+                                        className="glass-panel px-4 py-2 rounded-full text-[10px] uppercase tracking-[0.2em] font-black text-slate-300 flex items-center gap-2 border-white/5"
+                                    >
+                                        <span className="text-brand-green">{item.icon}</span>
+                                        {item.label}
+                                    </motion.span>
+                                ))}
+                            </div>
+
+                            <h1 className="text-5xl md:text-7xl lg:text-[100px] font-black mb-10 leading-[0.9] tracking-[-0.04em] uppercase">
+                                Боитесь, что <br />
+                                <span className="text-gradient">система ляжет?</span> <br />
+                                Фуры не встанут.
+                            </h1>
+
+                            <p className="text-lg md:text-xl text-slate-400 mb-12 leading-relaxed font-medium max-w-2xl">
+                                СТТ EDI — Гарантия надежности №1 в Беларуси. Мы обеспечиваем бесперебойный обмен электронными накладными, когда другие останавливаются.
+                            </p>
+
+                            <div className="flex flex-col sm:flex-row items-center gap-6">
+                                <button className="flow-button text-xs font-black uppercase tracking-[0.2em] px-10 py-5">
+                                    Подключиться без риска <ArrowRight className="w-4 h-4 inline-block ml-2 mb-0.5" />
+                                </button>
+                                <button className="glass-panel px-10 py-5 rounded-full text-xs font-black uppercase tracking-[0.2em] flex items-center gap-3 hover:bg-white/5 transition-all duration-500">
+                                    <span className="w-8 h-8 rounded-full bg-brand-green/20 flex items-center justify-center">
+                                        <Play className="w-3 h-3 text-brand-green fill-brand-green" />
+                                    </span>
+                                    Смотреть демо
+                                </button>
+                            </div>
+                        </motion.div>
+                    </div>
+
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
+                        initial={{ opacity: 0, x: 50, rotate: 10 }}
+                        animate={{ opacity: 1, x: 0, rotate: 0 }}
+                        transition={{ duration: 1.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                        className="lg:w-2/5 relative"
                     >
-                        <div className="flex justify-center gap-4 mb-8">
-                            <span className="bg-white/5 border border-white/10 px-4 py-2 rounded-full text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400">
-                                Резидент ПВТ
-                            </span>
-                            <span className="bg-white/5 border border-white/10 px-4 py-2 rounded-full text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400">
-                                Партнер GS1
-                            </span>
-                            <span className="bg-white/5 border border-white/10 px-4 py-2 rounded-full text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400">
-                                Top-3 EDI СНГ
-                            </span>
+                        <div className="relative z-10 glass-panel p-4 rounded-[40px] border-white/10 shadow-[0_0_100px_rgba(15,168,95,0.15)]">
+                            <img
+                                src="/hero-illustration.png"
+                                alt="Liquid Glass Connectivity"
+                                className="w-full h-auto rounded-[32px] object-cover"
+                            />
+                            {/* Decorative refractive ring */}
+                            <div className="absolute inset-0 bg-gradient-to-tr from-brand-green/10 to-transparent pointer-events-none rounded-[40px]" />
                         </div>
 
-                        <h1 className="text-5xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tighter uppercase">
-                            Боитесь, что <br />
-                            <span className="text-gradient">система ляжет?</span> <br />
-                            Фуры не встанут.
-                        </h1>
-
-                        <p className="text-xl md:text-2xl text-slate-400 mb-12 max-w-3xl mx-auto leading-relaxed">
-                            СТТ EDI — Гарантия надежности №1 в Беларуси. Мы обеспечиваем бесперебойный обмен электронными накладными, когда другие останавливаются.
-                        </p>
-
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                            <button className="epam-button-primary group px-10 py-5">
-                                <span>Подключиться без риска</span>
-                                <ArrowRight className="inline-block ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                            </button>
-                            <button className="epam-button-secondary flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                                    <Play className="w-4 h-4 fill-white" />
-                                </div>
-                                <span>Смотреть демо</span>
-                            </button>
-                        </div>
+                        {/* Background glow behind image */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-brand-green/10 blur-[120px] -z-10" />
                     </motion.div>
                 </div>
             </div>
 
-            {/* Absolute Bottom Badge - EPAM Style */}
-            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-8 opacity-50">
-                <div className="text-[10px] uppercase tracking-[0.3em] font-bold">Safe</div>
-                <div className="w-px h-8 bg-slate-800" />
-                <div className="text-[10px] uppercase tracking-[0.3em] font-bold">Reliable</div>
-                <div className="w-px h-8 bg-slate-800" />
-                <div className="text-[10px] uppercase tracking-[0.3em] font-bold">Enterprise</div>
-            </div>
+            {/* Floating Decorative Elements */}
+            <motion.div
+                animate={{ y: [0, -20, 0], opacity: [0.1, 0.2, 0.1] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-12 text-[10px] uppercase tracking-[0.4em] font-bold text-slate-500"
+            >
+                <span>Safe</span>
+                <span className="w-1 h-1 bg-brand-green rounded-full" />
+                <span>Reliable</span>
+                <span className="w-1 h-1 bg-brand-green rounded-full" />
+                <span>Enterprise</span>
+            </motion.div>
         </section>
     );
 };
