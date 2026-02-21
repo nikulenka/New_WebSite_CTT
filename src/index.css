@@ -2,47 +2,76 @@
 
 @theme {
   --color-brand-green: #0FA85F;
+  --color-brand-cyan: #00F5FF;
   --color-brand-orange: #FF6B3D;
-  --color-bg-light: #F8FAFC;
-  --color-bg-dark: #0F172A;
-  
+  --color-bg-dark: #000000;
+  --color-bg-slate: #0c0c0c;
+
   --font-header: "DM Sans", sans-serif;
   --font-body: "Inter", sans-serif;
+
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 2px #0FA85F);
+  }
+
+  to {
+    filter: drop-shadow(0 0 10px #0FA85F);
+  }
 }
 
 @layer base {
   body {
-    @apply bg-bg-light text-slate-900 font-body;
+    @apply bg-bg-dark text-slate-100 font-body antialiased;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-header font-bold;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-header font-bold tracking-tight text-white;
   }
 }
 
-/* Neomorphic Utility Classes */
 @layer components {
-  .neo-flat {
-    background: #F8FAFC;
-    box-shadow: 20px 20px 60px #d3d5d6,
-                -20px -20px 60px #ffffff;
+  .epam-card {
+    @apply bg-[#0c0c0c] border border-slate-800 transition-all duration-500;
   }
-  
-  .neo-inset {
-    background: #F8FAFC;
-    box-shadow: inset 20px 20px 60px #d3d5d6,
-                inset -20px -20px 60px #ffffff;
+
+  .epam-card:hover {
+    @apply border-brand-green/50 bg-[#161616];
   }
-  
-  .neo-button {
-    @apply transition-all duration-300;
-    box-shadow: 6px 6px 12px #d3d5d6,
-                -6px -6px 12px #ffffff;
+
+  .epam-button-primary {
+    @apply bg-brand-green text-white px-8 py-4 font-bold uppercase tracking-wider transition-all duration-300 relative overflow-hidden;
   }
-  
-  .neo-button:hover {
-    box-shadow: 2px 2px 4px #d3d5d6,
-                -2px -2px 4px #ffffff;
-    @apply translate-y-0.5;
+
+  .epam-button-primary:hover {
+    @apply bg-white text-black;
+  }
+
+  .epam-button-secondary {
+    @apply border border-white text-white px-8 py-4 font-bold uppercase tracking-wider transition-all duration-300;
+  }
+
+  .epam-button-secondary:hover {
+    @apply bg-white text-black;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-green to-brand-cyan;
+  }
+
+  .neon-mesh {
+    background-image:
+      radial-gradient(at 0% 0%, rgba(15, 168, 95, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(0, 245, 255, 0.1) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(15, 168, 95, 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(0, 245, 255, 0.05) 0px, transparent 50%);
   }
 }
